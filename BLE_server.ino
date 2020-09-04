@@ -7,8 +7,8 @@
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
 
-#define SERVICE_IDENTIFIER_UUID "704fcaaa-a20d-4d29-b984-e099a6828549"
-#define CHARECTERISTIC_IDENTIFIER_UUID "c3fa560c-1f67-4ae3-97ec-ed73831270d8"
+#define SERVICE_BID_UUID "704fcaaa-a20d-4d29-b984-e099a6828549"
+#define CHARECTERISTIC_BID_UUID "c3fa560c-1f67-4ae3-97ec-ed73831270d8"
 
 #define SERVICE_ACC_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 #define CHARECTERISTIC_ACCX_UUID "002c6092-3f0d-4370-a45d-e3f5bccd6938"
@@ -19,6 +19,10 @@
 #define CHARECTERISTIC_GYROX_UUID "8bec6f2b-6cf5-48e2-b9c4-5146049ae800"
 #define CHARECTERISTIC_GYROY_UUID "14834712-21e8-4d1d-95e5-f3988aa71844"
 #define CHARECTERISTIC_GYROZ_UUID "3faecf53-f369-4171-ba2c-0d3368f262e3"
+
+#define SERVICE_LOC_UUID          "1a2e8798-0300-4c63-b7b0-9c2b62fa36d6"
+#define CHARECTERISTIC_LATITUDE   "b9221126-97c6-440f-b790-167c9d2ebb1d"
+#define CHARECTERISTIC_LONGITUDE  "b6ad73d3-b9bf-4316-8b4a-15fe9966f650"
 
 #define SERVICE_ATT_UUID          "72272a3c-52b3-4650-8c09-e92c4e96fa69"
 #define CHARECTERISTIC_PITCH_UUID "b63cec8c-35ee-40c2-8efc-237b7ac5b515"
@@ -100,13 +104,13 @@ void setup() {
   BLEDevice::init("m5-stack");
   BLEServer *pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
-  BLEService *pServiceID = pServer->createService(SERVICE_IDENTIFIER_UUID);
+  BLEService *pServiceID = pServer->createService(SERVICE_BID_UUID);
   BLEService *pServiceGyro = pServer->createService(SERVICE_GYRO_UUID);
   BLEService *pServiceAcc = pServer->createService(SERVICE_ACC_UUID);
   BLEService *pServiceAtt = pServer->createService(SERVICE_ATT_UUID);
   
   pCharacteristicID = pServiceID->createCharacteristic(
-                                         CHARECTERISTIC_IDENTIFIER_UUID,
+                                         CHARECTERISTIC_BID_UUID,
                                          BLECharacteristic::PROPERTY_READ |
                                          BLECharacteristic::PROPERTY_WRITE |
                                          BLECharacteristic::PROPERTY_NOTIFY |
